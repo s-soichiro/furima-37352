@@ -5,7 +5,11 @@ class ItemsController < ApplicationController
   end
 
   def new
-    @items = Item.new
+    if user_signed_in?
+      @items = Item.new
+    else
+      redirect_to root_path
+    end
   end
-  
+
 end
