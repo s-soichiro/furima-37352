@@ -1,6 +1,4 @@
 class Item < ApplicationRecord
-  belongs_to :user
-  has_one_attached :image
 
   extend ActiveHash::Associations::ActiveRecordExtensions
   belongs_to :category
@@ -8,6 +6,8 @@ class Item < ApplicationRecord
   belongs_to :postage
   belongs_to :prefectures
   belongs_to :delivery_date
+  belongs_to :user
+  has_one_attached :image
 
   validates :name, presence: true
   validates :content, presence: true
