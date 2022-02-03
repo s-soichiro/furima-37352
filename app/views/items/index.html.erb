@@ -127,8 +127,7 @@
       新規投稿商品
     </div>
     <ul class='item-lists'>
-
-      <% unless @items == [] %>
+      <% unless @items[0] == nil %>
       <% @items.each do |items| %>
         <li class='list'>
           <%= link_to "#" do %>
@@ -147,7 +146,7 @@
              <%= items.name %>
            </h3>
            <div class='item-price'>
-             <span><%= items.price %>円<br><%= Postage.find(items.postage_id).name %></span>
+             <span><%= items.price %>円<br><%= items.postage.name %></span>
              <div class='star-btn'>
                 <%= image_tag "star.png", class:"star-icon" %>
                <span class='star-count'>0</span>
