@@ -3,15 +3,15 @@ class OrdersController < ApplicationController
 
 
   def index
-    
+    @order_delivery = OrderDelivery.new
   end
 
   def create
-    @order = Order.new(order_params)
-    if @order.valid?
+    @order_delivery = OrderDelivery.new(order_params)
+    if @order_delivery.valid?
       pay_item
       redirect_to root_path
-      @order.save
+      @order_delivery.save
     else
       render :index
     end
@@ -34,7 +34,7 @@ class OrdersController < ApplicationController
   end
 
   def order_params
-    params.permit(:token).merge(user_id: current_user.id, item_id: params[:item_id])
+    params.require(:order_delivery).permit(:post_code,:prefectures_id,:municipalities,:adress,:building_name,:tel_num).merge(user_id: current_user.id, item_id: params[:item_id], token: params[:token])
   end
 
 end
