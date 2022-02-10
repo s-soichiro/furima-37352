@@ -9,6 +9,8 @@ class OrderDelivery
     validates :municipalities
     validates :adress
     validates :tel_num
+    validates :user_id
+    validates :item_id
   end
   validates :tel_num, numericality: { only_integer: true, message: "is invalid. Input only number"}
   validates :tel_num, length: { minimum: 10, maximum: 11, message: "Input Within range"}

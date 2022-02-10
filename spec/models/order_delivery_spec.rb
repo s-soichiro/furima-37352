@@ -2,7 +2,10 @@ require 'rails_helper'
 
 RSpec.describe OrderDelivery, type: :model do
   before do
-    @order = FactoryBot.build(:order_delivery)
+    user = FactoryBot.create(:user)
+    item = FactoryBot.create(:item)
+    @order = FactoryBot.build(:order_delivery, user_id: user.id, item_id: item.id)
+    sleep 0.1
   end
 
   describe '商品購入' do
@@ -60,7 +63,17 @@ RSpec.describe OrderDelivery, type: :model do
         @order.tel_num = "12231"
         @order.valid?
         expect(@order.errors.full_messages).to include("Tel num Input Within range")
-      end      
+      end
+      it "user_idが空では登録できない" do
+        @order.user_id = nil
+        @order.valid?
+        expect(@order.errors.full_messages).to include("User can't be blank")
+      end
+      it "item_idが空では登録できない" do
+        @order.item_id = nil
+        @order.valid?
+        expect(@order.errors.full_messages).to include("Item can't be blank")
+      end
     end
   end
 
