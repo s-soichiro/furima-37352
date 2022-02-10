@@ -1,17 +1,27 @@
 class OrdersController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_item, only: [:index, :create]
 
 
   def index
-    @order_delivery = OrderDelivery.new
+    @item = Item.find(params[:item_id])
+    if current_user.id != @item.user_id
+      if @item.order == nil
+        @order_delivery = OrderDelivery.new
+      else
+        redirect_to root_path
+      end
+    else
+      redirect_to root_path
+    end
   end
 
   def create
     @order_delivery = OrderDelivery.new(order_params)
     if @order_delivery.valid?
       pay_item
-      redirect_to root_path
       @order_delivery.save
+      redirect_to root_path
     else
       render :index
     end
