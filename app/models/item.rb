@@ -15,15 +15,15 @@ class Item < ApplicationRecord
   
 
   with_options presence: true do
-    validates :price, numericality: {only_integer: true, message: "is invalid. Must input half-width value."}
+    validates :price, numericality: {only_integer: true, message: "半角の数値を入力してください"}
   end
-  validates :price, numericality: {greater_than_or_equal_to: 300, less_than_or_equal_to: 9999999, message: "is invalid. Must input Enter within range."}
+  validates :price, numericality: {greater_than_or_equal_to: 300, less_than_or_equal_to: 9999999, message: "範囲内の値を入力してください"}
   
 
   validates :image, presence: true
-  validates :category_id, numericality: { other_than: 1 , message: "can't be blank"}
-  validates :status_id, numericality: { other_than: 1 , message: "can't be blank"}
-  validates :postage_id, numericality: { other_than: 1 , message: "can't be blank"}
-  validates :prefectures_id, numericality: { other_than: 1 , message: "can't be blank"}
-  validates :delivery_date_id, numericality: { other_than: 1 , message: "can't be blank"}
+  validates :category_id, numericality: { other_than: 1 , message: "を選択してください"}
+  validates :status_id, numericality: { other_than: 1 , message: "を選択してください"}
+  validates :postage_id, numericality: { other_than: 1 , message: "を選択してください"}
+  validates :prefectures_id, numericality: { other_than: 1 , message: "を選択してください"}
+  validates :delivery_date_id, numericality: { other_than: 1 , message: "を選択してください"}
 end
