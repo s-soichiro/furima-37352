@@ -127,6 +127,7 @@
       新規投稿商品
     </div>
     <ul class='item-lists'>
+    <%# 商品のデータがあれば表示し、なければダミーを表示する %>
       <% unless @items[0] == nil %>
       <% @items.each do |item| %>
         <li class='list'>
